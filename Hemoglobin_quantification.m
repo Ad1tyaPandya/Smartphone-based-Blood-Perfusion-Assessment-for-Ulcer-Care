@@ -68,7 +68,7 @@ E_940_D = 678;  %E at 940 nm of deoxy hemoglobin
 
 % cuffed
 %%%%%%%%%%%%%%%%%%%%%%%%%
-video_650 = 'hemoglobin_input/vid650.avi'
+video_650 = 'hemoglobin_input/vid650.mp4'
 obj_650 = VideoReader(video_650);
 
 Frames_650 = squeeze(im2single(read(obj_650)));
@@ -87,7 +87,7 @@ m_i_650_c = mean(Image_650_cuffed(Extract_residual_650_cuffed==1),'all');
 % m_i_650_c = mean(Image_650_cuffed,'all');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-Image_950 = 'hemoglobin_input/vid950.avi'
+Image_950 = 'hemoglobin_input/vid950.mp4'
 obj_950 = VideoReader(Image_950);
 
 Frames_950 = squeeze(im2single(read(obj_950)));
@@ -199,7 +199,7 @@ colorbar();
 
 
  figure;imagesc(C_HbO2_cuffed);title('Oxy-hemoglobin distribution cuffed');colorbar();
-    saveas(gcf,['output/Oxy-hemoglobin distribution cuffed.png']);
+    saveas(gcf,['output/oxy.png']);
  
 
  
@@ -210,7 +210,7 @@ colorbar();
 
 
   figure;imagesc(C_Hb_cuffed); title('Deoxy-hemoglobin distribution cuffed');colorbar();
-    saveas(gcf,['output/Deoxy-hemoglobin distribution cuffed.png']);
+    saveas(gcf,['output/deoxy.png']);
   
   
 

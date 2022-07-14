@@ -15,6 +15,11 @@ def hello_world():
 
 @app.route('/heat_map', methods=['GET'])
 def mlapi():
+    vid1 = request.args['vid1']
+    arr = json.loads(vid1)
+    bytearr = bytearray(arr)
+    with open('heatmap_input\\input.mp4') as file:
+        file.write(bytearr)
     something.cool()
     d = {}
     with open('Images\\figure1.png', 'rb') as image:
@@ -28,15 +33,20 @@ def mlapi():
 @app.route('/hemoglobin', methods=['GET'])
 def hemo():
     # the output image will be determined by the model output (send cuffed image if abnormal and vice versa)
-    img1 = (request.args['img1'])
-    arr = json.loads(img1)
+    vid1 = (request.args['vid1'])
+    vid2 = request.args['vid2']
+    arr = json.loads(vid1)
+    arr2 = json.laods(vid2)
     bytearr = bytearray(arr)
-    with open('test.png', mode='wb') as file:
+    bytearr2 = bytearray(arr2)
+    with open('hemoglobin_input\\vid650', mode='wb') as file:
         file.write(bytearr)
+    with open('hemoglobin_input\\vid950', mode='wb') as file:
+        file.write(bytearr2)
 
     something.hot()
     d = {}
-    with open('Images\\figure3.png', 'rb') as image:
+    with open('output/oxy.png', 'rb') as image:
         f = image.read()
 
         d["img"] = base64.b64encode(f).decode('ascii')
