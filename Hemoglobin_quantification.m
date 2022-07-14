@@ -108,37 +108,6 @@ clear obj_650 obj_950
 
 % uncuffed
 %%%%%%%%%%%%%%%%%%%%%%%%%
-video_650 = 'video/uncuffed/20211105_Chuqin_650_uncuffed_1.avi'
-obj_650 = VideoReader(video_650);
-
-Frames_650 = squeeze(im2single(read(obj_650)));
-
-
-Image_650_uncuffed = mean(Frames_650,3);
-
-% figure;imshow(Image_650_uncuffed,[]);
-
-Extract_residual_650_uncuffed = 1-segmentImage(Image_650_uncuffed); 
-
-m_i_650_uc = mean(Image_650_uncuffed(Extract_residual_650_uncuffed==1),'all');
-
-
-
-% m_i_650_uc = mean(Image_650_uncuffed,'all');
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-Image_950 = 'video/uncuffed/20211105_Chuqin_950_uncuffed_1.avi'
-obj_950 = VideoReader(Image_950);
-
-Frames_950 = squeeze(im2single(read(obj_950)));
-
-Image_950_uncuffed = mean(Frames_950,3);
-
-Extract_residual_950_uncuffed = 1-segmentImage(Image_950_uncuffed); 
-
-m_i_950_uc = mean(Image_950_uncuffed(Extract_residual_950_uncuffed==1),'all');
-
-% m_i_950_uc = mean(Image_950_uncuffed,'all');
 
 
 
@@ -170,25 +139,11 @@ Image_950_cuffed(Extract_img_950_uncuffed==0) =0;
 
 %%%%%%%%%%%%%%%%%%%%% uncuffed 
 
-% 650 nm
-Extract_img_650_uncuffed = segmentImage(Image_650_uncuffed); % extract palm from 940 images
-Image_650_uncuffed(Extract_img_650_uncuffed==0) =0;
 
-
-% 950 nm
-Extract_img_950_uncuffed = segmentImage(Image_950_uncuffed); % extract palm from 940 images
-Image_950_uncuffed(Extract_img_950_uncuffed==0) =0;
-
-
-% max_int = max([Image_650_cuffed Image_950_cuffed Image_650_uncuffed Image_950_uncuffed],[],'all');
-
- 
 % im2double
 
 Image_650_cuffed = im2double(Image_650_cuffed);
 Image_950_cuffed = im2double(Image_950_cuffed);
-Image_650_uncuffed = im2double(Image_650_uncuffed);
-Image_950_uncuffed = im2double(Image_950_uncuffed);
 
 
 
@@ -196,21 +151,17 @@ Image_950_uncuffed = im2double(Image_950_uncuffed);
 
 Mask_650_cuffed = segmentImage(Image_650_cuffed);
 Mask_950_cuffed = segmentImage(Image_950_cuffed);
-Mask_650_uncuffed = segmentImage(Image_650_uncuffed);
-Mask_950_uncuffed = segmentImage(Image_950_uncuffed);
+
 
 
 Image_650_cuffed(Mask_650_cuffed==0)=0;
 Image_950_cuffed(Mask_950_cuffed==0)=0;
-Image_650_uncuffed(Mask_650_uncuffed==0)=0;
-Image_950_uncuffed(Mask_950_uncuffed==0)=0;
 
 % Normalization
 Image_650_cuffed = Image_650_cuffed./max(Image_650_cuffed,[],'all');
 Image_950_cuffed = Image_950_cuffed./max(Image_950_cuffed,[],'all');
 
-Image_650_uncuffed = Image_650_uncuffed./max(Image_650_uncuffed,[],'all');
-Image_950_uncuffed = Image_950_uncuffed./max(Image_950_uncuffed,[],'all');
+
 
 %% show prcessed images
 
@@ -224,14 +175,7 @@ subplot(1,4,2);
 imagesc(Image_950_cuffed);
 title('Image 950 cuffed');
 colorbar();
-subplot(1,4,3);
-imagesc(Image_650_uncuffed);
-title('Image 650 uncuffed');
-colorbar();
-subplot(1,4,4);
-imagesc(Image_950_uncuffed);
-title('Image 950 uncuffed');
-colorbar();
+
 
 
 % figure;
@@ -241,12 +185,7 @@ colorbar();
 % subplot(1,4,2);
 % imshow(Image_950_cuffed);
 % title('Image 950 cuffed');
-% subplot(1,4,3);
-% imshow(Image_650_uncuffed);
-% title('Image 650 uncuffed');
-% subplot(1,4,4);
-% imshow(Image_950_uncuffed);
-% title('Image 950 uncuffed');
+
 
 
 
@@ -274,25 +213,5 @@ colorbar();
     saveas(gcf,['output/Deoxy-hemoglobin distribution cuffed.png']);
   
   
-% uncuffed
- 
- C_HbO2_uncuffed = ((1-Image_650_uncuffed)-(E_650_D/E_940_D)*(1-Image_950_uncuffed))./(E_650_O-(E_650_D/E_940_D)*E_940_O);
- C_HbO2_uncuffed = C_HbO2_uncuffed./max(C_HbO2_uncuffed,[],'all');
- C_HbO2_uncuffed(Mask_650_cuffed==0)=0;
 
-
-
- figure;imagesc(C_HbO2_uncuffed);title('Oxy-hemoglobin distribution uncuffed');colorbar();
-    saveas(gcf,['output/Oxy-hemoglobin distribution uncuffed.png']);
- 
-
- 
- C_Hb_uncuffed = ((1-Image_650_uncuffed)-(E_650_O/E_940_O)*(1-Image_950_uncuffed))./(E_650_D-(E_650_O/E_940_O)*E_940_D);
- C_Hb_uncuffed = C_Hb_uncuffed./max(C_Hb_uncuffed,[],'all'); 
- C_Hb_uncuffed(Mask_650_cuffed==0)=0;
-
-
-
-  figure;imagesc(C_Hb_uncuffed); title('Deoxy-hemoglobin distribution uncuffed');colorbar();
-    saveas(gcf,['output/Deoxy-hemoglobin distribution uncuffed.png']);
  
