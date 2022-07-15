@@ -2,7 +2,7 @@ clear all;
 clc;
 %% finger image data extract
 grid = [100 100];
-biomatrix3 = 'heatmap_input/input.mp4';
+biomatrix3 = 'heatmap_input/input.avi';
 obj = VideoReader(biomatrix3);
 h = floor(linspace(0, obj.Height, grid(1)+1));
 h = diff(h);

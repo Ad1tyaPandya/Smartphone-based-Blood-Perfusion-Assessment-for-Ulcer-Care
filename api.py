@@ -4,6 +4,9 @@ from numpy import byte
 import json
 import something
 import base64
+import os
+import subprocess
+import time
 
 app = Flask(__name__)
 
@@ -13,16 +16,26 @@ def hello_world():
     return f'Hellos World'
 
 
+
+
 @app.route('/heat_map', methods=['GET'])
 def mlapi():
     vid1 = request.args['vid1']
     arr = json.loads(vid1)
     bytearr = bytearray(arr)
-    with open('heatmap_input\\input.mp4') as file:
+    # print(arr)
+    input_path = '/home/ubuntu/Desktop/Summer2022App/heatmap_input'
+    joined_input_path = os.path.join(input_path, "input1.mp4")
+    with open(joined_input_path, mode = 'wb') as file:
         file.write(bytearr)
+    outputfile = (joined_input_path.replace('.avi','.mp4'))
+    subprocess.call(['ffmpeg','-i',joined_input_path,os.path.join(input_path, "input.avi")])
+    print("starting")
+    time.sleep(3)
     something.cool()
+    print('stopping')
     d = {}
-    with open('Images\\figure1.png', 'rb') as image:
+    with open(r'Images\\figure1.png', 'rb') as image:
         f = image.read()
 
         d["img"] = base64.b64encode(f).decode('ascii')
@@ -54,5 +67,5 @@ def hemo():
     return d
 
 
-if __name__ == '__main__':
-    app.run()
+if __name__=='__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)
