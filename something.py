@@ -3,7 +3,7 @@ import matlab.engine
 
 def cool():
     eng = matlab.engine.start_matlab()
-    eng.heatmap_gen(nargout=0)
+    eng.heatmap_gen1(nargout=0)
     eng.quit()
 
 
