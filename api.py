@@ -38,7 +38,7 @@ def mlapi():
     with open('Images/figure2.png', 'rb') as image:
         f = image.read()
 
-        d["img"] = base64.b64encode(f).decode('ascii')
+    #     d["img"] = base64.b64encode(f).decode('ascii')
     d['heat_map1'] = 'taco'
     return d
 
