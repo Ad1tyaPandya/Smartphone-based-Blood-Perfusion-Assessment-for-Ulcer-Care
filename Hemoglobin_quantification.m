@@ -68,7 +68,7 @@ E_940_D = 678;  %E at 940 nm of deoxy hemoglobin
 
 % cuffed
 %%%%%%%%%%%%%%%%%%%%%%%%%
-video_650 = 'hemoglobin_input/vid650.mp4'
+video_650 = '20211105_Chuqin_650_cuffed_1.avi'
 obj_650 = VideoReader(video_650);
 
 Frames_650 = squeeze(im2single(read(obj_650)));
@@ -87,7 +87,7 @@ m_i_650_c = mean(Image_650_cuffed(Extract_residual_650_cuffed==1),'all');
 % m_i_650_c = mean(Image_650_cuffed,'all');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-Image_950 = 'hemoglobin_input/vid950.mp4'
+Image_950 = '20211105_Chuqin_950_cuffed_1.avi'
 obj_950 = VideoReader(Image_950);
 
 Frames_950 = squeeze(im2single(read(obj_950)));
@@ -114,11 +114,6 @@ clear obj_650 obj_950
 %%%%%%%% normalization  %%%%%%%%%%
 
 
-Image_650_uncuffed = Image_650_uncuffed*m_i_650_c/m_i_650_uc;
-
-Image_950_uncuffed = Image_950_uncuffed*m_i_950_c/m_i_950_uc;
-
-
 
 %%%%%%%%%%%%%%%%%%%%% cuffed
  
@@ -133,8 +128,7 @@ Image_650_cuffed(Extract_img_650_cuffed==0) =0;
 
 
 % 950 nm
-Extract_img_950_uncuffed = segmentImage(Image_950_cuffed); % extract palm from 940 images
-Image_950_cuffed(Extract_img_950_uncuffed==0) =0;
+
 
 
 %%%%%%%%%%%%%%%%%%%%% uncuffed 
