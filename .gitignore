@@ -1,6 +1,7 @@
 *.mp4
 *.txt
 *.bin
-*.fig
 *.avi
 *.png
+*.fig
+*.bin
