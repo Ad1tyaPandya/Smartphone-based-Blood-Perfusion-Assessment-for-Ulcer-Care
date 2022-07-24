@@ -18,27 +18,25 @@ def hello_world():
 
 @app.route('/heat_map', methods=['GET'])
 def mlapi():
-
     vid1 = request.args['vid1']
     arr = json.loads(vid1)
     bytearr = bytearray(arr)
     # print(arr)
-    input_path = '/heatmap_input'
+    input_path = '\\heatmap_input'
     joined_input_path = os.path.join(input_path, "input1.mp4")
-    with open(joined_input_path, mode='wb') as file:
+    with open('C:\\Users\\adity\\summer 2022 research\\api\\heatmap_input\\input1.avi', mode='wb') as file:
         file.write(bytearr)
-    # outputfile = (joined_input_path.replace('.avi', '.mp4'))
-    # subprocess.call(['ffmpeg', '-i', joined_input_path,
-    #                 os.path.join(input_path, "input.avi")])
+    outputfile = (joined_input_path.replace('.avi', '.mp4'))
+    # subprocess.call(['ffmpeg','-i',joined_input_path,os.path.join(input_path, "input.avi")])
     # print("starting")
     # time.sleep(3)
     # something.cool()
     # print('stopping')
     d = {}
-    # with open('Images\\figure1.png', 'rb') as image:
-    #     f = image.read()
+    with open('Images/figure1.png', 'rb') as image:
+        f = image.read()
 
-    #     d["img"] = base64.b64encode(f).decode('ascii')
+        d["img"] = base64.b64encode(f).decode('ascii')
     d['heat_map1'] = 'taco'
     return d
 
@@ -68,4 +66,4 @@ def hemo():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
