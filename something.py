@@ -19,4 +19,4 @@ def grey():
     eng.quit()
 
 
-grey()
+cool()

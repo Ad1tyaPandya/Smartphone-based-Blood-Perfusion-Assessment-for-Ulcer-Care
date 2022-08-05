@@ -4,46 +4,35 @@ clc;
 grid = [30 30];
 biomatrix3 = 'somefile1.avi';
 bobybobjoe = '20211014_Wenhan_finger_1.avi';
-fakeboba = 'somefile1.avi';
+fakeboba = 'input.avi';
 vidObj = VideoWriter(fakeboba);
+%disp(vidObj.Duration;)
 
 
 
-rdp = VideoReader(bobybobjoe);
-joe = read(rdp);
-bobjoe = im2single(joe);
-bobybobjoe = squeeze(bobjoe);
-obj = VideoReader(biomatrix3);
 rd = VideoReader(fakeboba);
 bob = ((read(rd)));
 fakebob = im2single(bob);
-fakefakebob = squeeze(fakebob);
+disp(rd.Duration);
 
-newarr = fakebob(:,:,1,:);
-obj = VideoReader(fakeboba);
-
-
-disp(size(joe));
-disp('-1');
+disp(size(fakebob));
 disp(size(bob));
-disp('1');
-disp(size(newarr));
-disp('2');
-disp(size(bobjoe));
-disp('3');
-disp(size(fakefakebob));
+newarr = fakebob(:,:,1,:);
+
+obj = VideoReader(fakeboba);
+disp(size(obj));
+disp('hi');
+
 h = floor(linspace(0, obj.Height, grid(1)+1));
 h = diff(h);
 w = floor(linspace(0, obj.Width, grid(2)+1));
 w = diff(w);
-disp(h);
-disp(w);
 
 
-BIT_Frames = im2single(read(obj));
+
  
 % bromatrix4 = mean(BIT_Frames(:,:,:,:),3);
-biomatrix3 = squeeze(BIT_Frames);
+
 biomatrix3 = squeeze(newarr);
 nf = size(biomatrix3,3);
  
@@ -71,8 +60,8 @@ Fs = 24; % Sampling frequency
 L = size(biomatrix3,3);
 f = Fs*(0:(L/2))/L;
 
-disp(f)
-disp("something1")
+disp(f);
+disp("something1");
 
 l_l = find(f==1.2);%Unit in Hz define the lower limit of frequency range
 u_l = find(f==2);  %Unit in Hz define the upper limit of frequency range
@@ -84,11 +73,11 @@ u_l = find(f==2);  %Unit in Hz define the upper limit of frequency range
 % a_n = normalize(a(6:30,:,:),1,'range');
 
 
-disp(l_l)
-disp(u_l)
-disp("something")
+disp(l_l);
+disp(u_l);
+disp("something");
 l_l = 1;
-u_l = 65;
+u_l = 30;
 % a_n = a(6:30,:,:)./max(a(6:30,:,:),[],'all');
 intensity = zeros(grid(1), grid(2));
 for i = 1:grid(1)
