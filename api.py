@@ -27,20 +27,34 @@ def mlapi():
         # print(arr)
         input_path = '/heatmap_input'
         joined_input_path = os.path.join(input_path, "input1.mp4")
-        with open('input1.mp4', mode='wb') as file:
+        with open("input1.mp4", mode='wb') as file:
             file.write(bytearr)
         # outputfile = (joined_input_path.replace('.avi', '.mp4'))
-        # subprocess.call(['ffmpeg', '-i','-y', joined_input_path,
-        #                 os.path.join(input_path, "input.avi")])
+        subprocess.call(['ffmpeg', '-i', "input1.mp4",
+                         "input.avi", "-y"])
         # print("starting")
         # time.sleep(3)
-        # something.cool()
+        something.cool()
+        # time.sleep(10)
         # print('stopping')
+        with open('Images/figure1.png', 'rb') as image:
+            f = image.read()
+
+            d["img1"] = base64.b64encode(f).decode('ascii')
         with open('Images/figure2.png', 'rb') as image:
             f = image.read()
 
-            d["img"] = base64.b64encode(f).decode('ascii')
-        d['heat_map1'] = 'taco'
+            d["img2"] = base64.b64encode(f).decode('ascii')
+        with open('Images/figure3.png', 'rb') as image:
+            f = image.read()
+
+            d["img3"] = base64.b64encode(f).decode('ascii')
+        with open('Images/figure4.png', 'rb') as image:
+            f = image.read()
+
+            d["img4"] = base64.b64encode(f).decode('ascii')
+        
+        d['output'] = 'normal'
         d['work'] =True
     except:
         d['work'] = False
@@ -68,12 +82,13 @@ def hemo():
         with open('output/oxy.png', 'rb') as image:
             f = image.read()
 
-            d["img"] = base64.b64encode(f).decode('ascii')
+            d["img1"] = base64.b64encode(f).decode('ascii')
         with open('output/deoxy.png','rb') as image:
             f = image.read()
             d['img2'] = base64.b64encode(f).decode('ascii')
         d['heat_map1'] = 'taco'
         d['work'] = True
+        d['output'] = 'normal'
     except:
         d['work'] = False
     return d

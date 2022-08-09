@@ -68,7 +68,7 @@ E_940_D = 678;  %E at 940 nm of deoxy hemoglobin
 
 % cuffed
 %%%%%%%%%%%%%%%%%%%%%%%%%
-video_650 = '20211105_Chuqin_650_cuffed_1.avi'
+video_650 = 'input.avi'
 obj_650 = VideoReader(video_650);
 
 Frames_650 = squeeze(im2single(read(obj_650)));

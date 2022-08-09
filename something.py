@@ -16,5 +16,3 @@ def grey():
     eng = matlab.engine.start_matlab()
     eng.grey(nargout=0)
     eng.quit()
-
-grey()
