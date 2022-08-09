@@ -66,16 +66,16 @@ def hemo():
     # the output image will be determined by the model output (send cuffed image if abnormal and vice versa)
     d = {}
     try:
-        # vid1 = (request.args['vid1'])
-        # vid2 = request.args['vid2']
-        # arr = json.loads(vid1)
-        # arr2 = json.laods(vid2)
-        # bytearr = bytearray(arr)
-        # bytearr2 = bytearray(arr2)
-        # with open('vid650', mode='wb') as file:
-        #     file.write(bytearr)
-        # with open('vid950', mode='wb') as file:
-            # file.write(bytearr2)
+        vid1 = (request.args['vid1'])
+        vid2 = request.args['vid2']
+        arr = json.loads(vid1)
+        arr2 = json.laods(vid2)
+        bytearr = bytearray(arr)
+        bytearr2 = bytearray(arr2)
+        with open('vid650.mp4', mode='wb') as file:
+            file.write(bytearr)
+        with open('vid950.mp4', mode='wb') as file:
+            file.write(bytearr2)
 
         # something.hot()
         d = {}
